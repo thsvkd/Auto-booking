@@ -10,6 +10,7 @@ from selenium.webdriver.chrome.options import Options
 import pause
 import pyperclip
 
+# 아이디와 패스워드를 여기에 입력
 ID = "xxxx"
 PW = "xxxx"
 url = ("https://booking.naver.com/booking/6/bizes/171770",
@@ -20,11 +21,16 @@ options = Options()
 options.headless = False
 
 
+# executable_path 부분에 브라우저 드라이버 파일 경로를 입력
 driver = webdriver.Chrome(
     executable_path='C:/Users/thsxo/OneDrive/utility/chromedriver.exe', options=options)
 wait = WebDriverWait(driver, 10)
 driver.get(url[1])
 # time.sleep(5)
+
+
+# 로그인 함수
+# 아이디 창과 패스워드 입력 창을 찾아서 클릭할 수 있을때까지 기다린 다음 자동으로 입력을 합니다
 
 
 def login():
