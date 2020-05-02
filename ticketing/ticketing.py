@@ -21,7 +21,7 @@ options.headless = False
 
 
 driver = webdriver.Chrome(
-    executable_path='C:/Users/xxxx/OneDrive/utility/chromedriver.exe', options=options)
+    executable_path='C:/Users/thsxo/OneDrive/utility/chromedriver.exe', options=options)
 wait = WebDriverWait(driver, 10)
 driver.get(url[1])
 # time.sleep(5)
