@@ -13,7 +13,7 @@ import pyperclip
 # 아이디와 패스워드를 여기에 입력
 ID = "xxxx"
 PW = "xxxx"
-url = ("https://kupis.konkuk.ac.kr/sugang/login/loginFset.jsp")
+URL = ("https://kupis.konkuk.ac.kr/sugang/login/loginFset.jsp")
 
 now = datetime.now()
 options = Options()
@@ -24,14 +24,18 @@ options.headless = False
 driver = webdriver.Chrome(
     executable_path='C:/Users/thsxo/OneDrive/utility/chromedriver.exe', options=options)
 wait = WebDriverWait(driver, 10)
-driver.get(url[1])
-# time.sleep(5)
+driver.get(URL)
 
 
 def login():
 
-    loginBtn = wait.until(EC.element_to_be_clickable(
-        (By.CLASS_NAME, "gnb_btn_login"))).click()
+    frame = wait.until(EC.element_to_be_clickable(
+        (By.TAG_NAME, 'frame')))
+
+    loginBtn = frame.find_element_by_xpath(
+        '//html/head')
+
+    # /html/body/form/table/tbody/tr/td[2]/table/tbody/tr/td/table[1]/tbody/tr/td[3]/table[3]/tbody/tr[2]/td[2]/table/tbody/tr/td[1]/table/tbody/tr[1]/td[3]/img
 
     id_box = wait.until(EC.element_to_be_clickable(
         (By.ID, "id")))
@@ -51,10 +55,9 @@ def login():
         (By.ID, "log.login"))).click()
 
 
-def booking():
-
-
 def main():
+
+    login()
 
 
 if __name__ == "__main__":
