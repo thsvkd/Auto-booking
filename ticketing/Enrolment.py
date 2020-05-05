@@ -29,10 +29,11 @@ driver.get(URL)
 
 def login():
 
-    iframe = wait.until(EC.element_to_be_clickable(
+    frame = wait.until(EC.element_to_be_clickable(
         (By.TAG_NAME, 'frame')))
 
-    driver.switch_to_frame(iframe)
+    driver.switch_to.frame(frame)
+    # driver.swi
 
     loginBtn = driver.find_element_by_xpath(
         '//html/head')
@@ -59,8 +60,6 @@ def login():
 
     login = driver.find_element_by_css_selector(
         'td[rowspan="2"]').click()
-
-    a = 1
 
 
 def main():
