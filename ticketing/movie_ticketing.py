@@ -63,12 +63,18 @@ def login():
         (By.CSS_SELECTOR, 'a[href="/ticket/"]'))).click()
 
     iframe = wait.until(EC.element_to_be_clickable(
-        (By.TAG_NAME, 'iframe')))
+        (By.ID, 'ticket_iframe')))
 
     driver.switch_to.frame(iframe)
 
-    movie_table = driver.find_element_by_css_selector(
-        'ul[class="content scroll-y"]')
+    movie_table = wait.until(EC.element_to_be_clickable(
+        (By.CSS_SELECTOR, 'ul[class="content scroll-y"]')))
+
+    time.sleep(1)
+
+    movie_list = movie_table.find_elements_by_tag_name('li')
+
+    print(movie_table.text)
 
 
 def main():
