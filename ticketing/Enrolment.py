@@ -11,8 +11,8 @@ import pause
 import pyperclip
 
 # 아이디와 패스워드를 여기에 입력
-ID = "xxxx"
-PW = "xxxx"
+ID = "thsvkd"
+PW = "Thsxogud1!"
 URL = ("https://kupis.konkuk.ac.kr/sugang/login/loginFset.jsp")
 
 now = datetime.now()
@@ -29,30 +29,38 @@ driver.get(URL)
 
 def login():
 
-    frame = wait.until(EC.element_to_be_clickable(
+    iframe = wait.until(EC.element_to_be_clickable(
         (By.TAG_NAME, 'frame')))
 
-    loginBtn = frame.find_element_by_xpath(
+    driver.switch_to_frame(iframe)
+
+    loginBtn = driver.find_element_by_xpath(
         '//html/head')
 
     # /html/body/form/table/tbody/tr/td[2]/table/tbody/tr/td/table[1]/tbody/tr/td[3]/table[3]/tbody/tr[2]/td[2]/table/tbody/tr/td[1]/table/tbody/tr[1]/td[3]/img
 
-    id_box = wait.until(EC.element_to_be_clickable(
-        (By.ID, "id")))
-    pw_box = driver.find_element_by_id("pw")
+    id_box = driver.find_element_by_css_selector('input[type="text"]')
+    pw_box = driver.find_element_by_css_selector('input[type="password"]')
+
+    # id_box.click()
+    # pyperclip.copy(ID)
+    # ActionChains(driver).key_down(Keys.CONTROL).send_keys(
+    #     'v').key_up(Keys.CONTROL).perform()
+
+    # pw_box.click()
+    # pyperclip.copy(PW)
+    # ActionChains(driver).key_down(Keys.CONTROL).send_keys(
+    #     'v').key_up(Keys.CONTROL).perform()
 
     id_box.click()
-    pyperclip.copy(ID)
-    ActionChains(driver).key_down(Keys.CONTROL).send_keys(
-        'v').key_up(Keys.CONTROL).perform()
-
+    id_box.send_keys(ID)
     pw_box.click()
-    pyperclip.copy(PW)
-    ActionChains(driver).key_down(Keys.CONTROL).send_keys(
-        'v').key_up(Keys.CONTROL).perform()
+    pw_box.send_keys(PW)
 
-    login = wait.until(EC.element_to_be_clickable(
-        (By.ID, "log.login"))).click()
+    login = driver.find_element_by_css_selector(
+        'td[rowspan="2"]').click()
+
+    a = 1
 
 
 def main():
