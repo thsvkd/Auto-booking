@@ -70,7 +70,12 @@ def login():
     movie_table = wait.until(EC.element_to_be_clickable(
         (By.CSS_SELECTOR, 'ul[class="content scroll-y"]')))
 
-    time.sleep(1)
+    #wait = WebDriverWait(movie_table, 10)
+
+    wait.until(EC.element_to_be_clickable(
+        (By.CSS_SELECTOR, 'li[data-index="0"]')))
+
+    # time.sleep(1)
 
     movie_list = movie_table.find_elements_by_tag_name('li')
 
