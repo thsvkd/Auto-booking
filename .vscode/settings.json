@@ -1,3 +1,6 @@
 {
-    "python.pythonPath": "C:\\Users\\thsxo\\anaconda3\\python.exe"
+    "python.pythonPath": "C:\\Users\\thsxo\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+    "python.linting.pylintEnabled": false,
+    "python.linting.banditEnabled": true,
+    "python.linting.enabled": true
 }
