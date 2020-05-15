@@ -11,32 +11,30 @@ import pause
 import pyperclip
 
 # 아이디와 패스워드를 여기에 입력
-ID = "thsvkd"
-PW = "Thsxogud1!"
+ID = "xxxx"
+PW = "xxxx"
 URL = ("https://kupis.konkuk.ac.kr/sugang/login/loginFset.jsp")
 
 now = datetime.now()
 options = Options()
 options.headless = False
 
-
 # executable_path 부분에 브라우저 드라이버 파일 경로를 입력
 driver = webdriver.Chrome(
-    executable_path='C:/Users/thsxo/OneDrive/utility/chromedriver.exe', options=options)
+    executable_path='C:/Users/thsxo/OneDrive/utility/chromedriver.exe',
+    options=options)
 wait = WebDriverWait(driver, 10)
 driver.get(URL)
 
 
 def login():
 
-    frame = wait.until(EC.element_to_be_clickable(
-        (By.TAG_NAME, 'frame')))
+    frame = wait.until(EC.element_to_be_clickable((By.TAG_NAME, 'frame')))
 
     driver.switch_to.frame(frame)
     # driver.swi
 
-    loginBtn = driver.find_element_by_xpath(
-        '//html/head')
+    loginBtn = driver.find_element_by_xpath('//html/head')
 
     # /html/body/form/table/tbody/tr/td[2]/table/tbody/tr/td/table[1]/tbody/tr/td[3]/table[3]/tbody/tr[2]/td[2]/table/tbody/tr/td[1]/table/tbody/tr[1]/td[3]/img
 
@@ -58,8 +56,7 @@ def login():
     pw_box.click()
     pw_box.send_keys(PW)
 
-    login = driver.find_element_by_css_selector(
-        'td[rowspan="2"]').click()
+    login = driver.find_element_by_css_selector('td[rowspan="2"]').click()
 
 
 def main():
