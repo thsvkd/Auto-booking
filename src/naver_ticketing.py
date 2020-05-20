@@ -11,8 +11,8 @@ import pause
 import pyperclip
 
 # 아이디와 패스워드를 여기에 입력
-ID = "thsxogud1123"
-PW = "Sonpang1!"
+ID = "xxxx"
+PW = "xxxx"
 URL = "https://booking.naver.com/booking/6/bizes/230889"
 
 now = datetime.now()
