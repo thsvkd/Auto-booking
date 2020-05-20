@@ -11,10 +11,9 @@ import pause
 import pyperclip
 
 # 아이디와 패스워드를 여기에 입력
-ID = "xxxx"
-PW = "xxxx"
-url = ("https://booking.naver.com/booking/6/bizes/171770",
-       "https://booking.naver.com/booking/6/bizes/230889")
+ID = "thsxogud1123"
+PW = "Sonpang1!"
+URL = "https://booking.naver.com/booking/6/bizes/230889"
 
 now = datetime.now()
 options = Options()
@@ -25,7 +24,7 @@ driver = webdriver.Chrome(
     executable_path='C:/Users/thsxo/OneDrive/utility/chromedriver.exe',
     options=options)
 wait = WebDriverWait(driver, 10)
-driver.get(url[1])
+driver.get(URL)
 # time.sleep(5)
 
 # 로그인 함수
@@ -98,7 +97,9 @@ def make_booking(calendar):
 
     wait.until(
         EC.text_to_be_present_in_element(
-            (By.CSS_SELECTOR, 'span[ng-bind="$ctrl.getDay(key)"]'), "26"))
+            (By.CSS_SELECTOR, 'span[ng-bind="$ctrl.getDay(key)"]'), "1"))
+
+    time.sleep(0.1)
 
     calendar_table = calendar.find_element_by_class_name("tb_body")
     weeks = calendar_table.find_elements_by_tag_name("tr")
@@ -121,6 +122,7 @@ def make_booking(calendar):
     sat_date[0].click()
 
     ###
+    time.sleep(0.1)
     customer_selector = wait.until(
         EC.element_to_be_clickable((By.CLASS_NAME, "customer_selector")))
     time_select_am = customer_selector.find_elements_by_xpath(
