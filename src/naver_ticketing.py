@@ -12,7 +12,7 @@ import pyperclip
 
 # 아이디와 패스워드를 여기에 입력
 ID = "xxxx"
-PW = "xxxx"
+PW = "xxxx!"
 URL = "https://booking.naver.com/booking/6/bizes/230889"
 
 now = datetime.now()
@@ -59,14 +59,15 @@ def wait_booking():
     while True:
 
         try:
+            print("try")
             more_info = wait.until(
                 EC.element_to_be_clickable(
                     (By.CSS_SELECTOR, 'span[class="img_border"]')))
             booking_btn = driver.find_element_by_css_selector(
                 'button[ng-click="goDetail()"]')
-        except NoSuchElementException:
+        except:
             driver.refresh()
-            print("refresh\n")
+            print("refresh")
         if booking_btn != 0:
             break
 
