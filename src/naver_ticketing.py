@@ -12,7 +12,7 @@ import pyperclip
 
 # 아이디와 패스워드를 여기에 입력
 ID = "xxxx"
-PW = "xxxx"
+PW = "xxxx!"
 URL = "https://booking.naver.com/booking/6/bizes/230889"
 
 now = datetime.now()
@@ -52,6 +52,8 @@ def login():
     login = wait.until(EC.element_to_be_clickable(
         (By.ID, "log.login"))).click()
 
+    time.sleep(0.5)
+
 
 def wait_booking():
     booking_btn = 0
@@ -62,12 +64,13 @@ def wait_booking():
             print("try")
             more_info = wait.until(
                 EC.element_to_be_clickable(
-                    (By.CSS_SELECTOR, 'span[class="img_border"]')))
+                    (By.CSS_SELECTOR, 'span[ng-bind-html="bizItemInfo.name | newlines"]')))
             booking_btn = driver.find_element_by_css_selector(
-                'button[ng-click="goDetail()"]')
+                'span[ng-bind-html="bizItemInfo.name | newlines"]')
         except:
             driver.refresh()
             print("refresh")
+            time.sleep(0.5)
         if booking_btn != 0:
             break
 
@@ -96,11 +99,11 @@ def get_calender():
 
 def make_booking(calendar):
 
-    wait.until(
-        EC.text_to_be_present_in_element(
-            (By.CSS_SELECTOR, 'span[ng-bind="$ctrl.getDay(key)"]'), "1"))
+    # wait.until(
+    #     EC.text_to_be_present_in_element(
+    #         (By.CSS_SELECTOR, 'span[ng-bind="$ctrl.getDay(key)"]'), "12"))
 
-    time.sleep(0.1)
+    time.sleep(0.5)
 
     calendar_table = calendar.find_element_by_class_name("tb_body")
     weeks = calendar_table.find_elements_by_tag_name("tr")
@@ -120,18 +123,18 @@ def make_booking(calendar):
             else:
                 etc_date.append(item2)
 
-    sat_date[0].click()
+    sat_date[1].click()
 
     ###
     time.sleep(0.1)
     customer_selector = wait.until(
         EC.element_to_be_clickable((By.CLASS_NAME, "customer_selector")))
-    time_select_am = customer_selector.find_elements_by_xpath(
-        "//div[@class='am']/div[@class='selector_time']/ul[@class='lst_time']/li[@class='item']/a[@class='anchor']/span[@ng-bind='$ctrl.getStartTime(timeSchedule)']"
-    )
-    time_select_pm = customer_selector.find_elements_by_xpath(
-        "//div[@class='pm']/div[@class='selector_time']/ul[@class='lst_time']/li[@class='item']/a[@class='anchor']/span[@ng-bind='$ctrl.getStartTime(timeSchedule)']"
-    )
+    time_select_am = customer_selector.find_element_by_css_selector(
+        'div[class="am"]'
+    ).find_elements_by_css_selector('span[ng-bind="$ctrl.getStartTime(timeSchedule)"]')
+    time_select_pm = customer_selector.find_element_by_css_selector(
+        'div[class="pm"]'
+    ).find_elements_by_css_selector('span[ng-bind="$ctrl.getStartTime(timeSchedule)"]')
 
     time_select = [time_select_am, time_select_pm]
 
