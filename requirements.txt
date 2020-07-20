@@ -1,0 +1,4 @@
+pause
+pyperclip
+selenium
+datetime
